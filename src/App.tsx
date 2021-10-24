@@ -1,12 +1,13 @@
-import React from 'react';
-import './App.scss';
+import "./App.scss"
+import TodoInsert from "./components/TodoInsert"
+import TodoTemplate from "./components/TodoTemplate"
 
 function App() {
   return (
-    <div className="App">
-      hi
-    </div>
-  );
+    <TodoTemplate>
+      <TodoInsert />
+    </TodoTemplate>
+  )
 }
 
-export default App;
+export default App
