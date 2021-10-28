@@ -4,11 +4,7 @@ import { MdAdd } from "react-icons/md"
 import "./TodoInsert.scss"
 
 interface TodoInsertProps {
-  onInsert: {
-    id: number
-    text: void
-    checked: boolean
-  }[]
+  onInsert: (text: string) => void
 }
 
 const TodoInsert = ({ onInsert }: TodoInsertProps) => {
