@@ -1,7 +1,7 @@
 import "./TodoTemplate.scss"
 
 interface TodoTemplateProps {
-  children?: React.ReactNode
+  children: React.ReactNode
 }
 
 const TodoTemplate = ({ children }: TodoTemplateProps) => {

@@ -3,10 +3,18 @@ import { MdAdd } from "react-icons/md"
 
 import "./TodoInsert.scss"
 
-const TodoInsert = () => {
+interface TodoInsertProps {
+  onInsert: {
+    id: number
+    text: void
+    checked: boolean
+  }[]
+}
+
+const TodoInsert = ({ onInsert }: TodoInsertProps) => {
   const [value, setValue] = useState("")
 
-  const onChange = useCallback((e) => {
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
   }, [])
 
