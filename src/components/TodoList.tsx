@@ -7,13 +7,14 @@ interface TodoListProps {
     text: string
     checked: boolean
   }[]
+  onRemove: (id: number) => void
 }
 
-const TodoList = ({ todos }: TodoListProps) => {
+const TodoList = ({ todos, onRemove }: TodoListProps) => {
   return (
     <div className="TodoList">
       {todos.map((todo) => (
-        <TodoListItem todo={todo} key={todo.id} />
+        <TodoListItem todo={todo} key={todo.id} onRemove={onRemove} />
       ))}
     </div>
   )

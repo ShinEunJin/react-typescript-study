@@ -5,29 +5,18 @@ import TodoList from "./components/TodoList"
 import TodoTemplate from "./components/TodoTemplate"
 import "./App.scss"
 
+interface todos {
+  id: number
+  text: string
+  checked: boolean
+}
 function App() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: "빨래방 가기",
-      checked: true,
-    },
-    {
-      id: 2,
-      text: "화장실 청고",
-      checked: true,
-    },
-    {
-      id: 3,
-      text: "백신 맞기",
-      checked: false,
-    },
-  ])
+  const [todos, setTodos] = useState<todos[]>([])
 
-  const nextId = useRef(4)
+  const nextId = useRef(0)
 
   const onInsert = useCallback(
-    (text) => {
+    (text: string) => {
       const todo = {
         id: nextId.current,
         text,
@@ -39,10 +28,17 @@ function App() {
     [todos]
   )
 
+  const onRemove = useCallback(
+    (id: number) => {
+      setTodos(todos.filter((todo) => todo.id !== id))
+    },
+    [todos]
+  )
+
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onRemove={onRemove} />
     </TodoTemplate>
   )
 }

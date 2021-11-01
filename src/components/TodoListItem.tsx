@@ -9,14 +9,15 @@ import "./TodoListItem.scss"
 
 interface TodoProps {
   todo: {
-    id?: number
+    id: number
     text: string
     checked: boolean
   }
+  onRemove: (id: number) => void
 }
 
-const TodoListItem = ({ todo }: TodoProps) => {
-  const { text, checked } = todo
+const TodoListItem = ({ todo, onRemove }: TodoProps) => {
+  const { id, text, checked } = todo
 
   return (
     <div className="TodoListItem">
@@ -24,7 +25,7 @@ const TodoListItem = ({ todo }: TodoProps) => {
         {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
         <div className="text">{text}</div>
       </div>
-      <div className="remove">
+      <div className="remove" onClick={() => onRemove(id)}>
         <MdRemoveCircleOutline />
       </div>
     </div>
