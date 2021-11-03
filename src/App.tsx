@@ -3,15 +3,15 @@ import React, { useState, useRef, useCallback } from "react"
 import TodoInsert from "./components/TodoInsert"
 import TodoList from "./components/TodoList"
 import TodoTemplate from "./components/TodoTemplate"
-import "./App.scss"
 
-interface todos {
+interface todosType {
   id: number
   text: string
   checked: boolean
 }
+
 function App() {
-  const [todos, setTodos] = useState<todos[]>([])
+  const [todos, setTodos] = useState<todosType[]>([])
 
   const nextId = useRef(0)
 
@@ -35,10 +35,17 @@ function App() {
     [todos]
   )
 
+  const onToggle = useCallback(
+    (id: number) => {
+      setTodos(todos.map(todo => todo.id === id ? { ...todo, checked: !todo.checked } : todo))
+    },
+    [todos]
+  )
+
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert} />
-      <TodoList todos={todos} onRemove={onRemove} />
+      <TodoList onToggle={onToggle} todos={todos} onRemove={onRemove} />
     </TodoTemplate>
   )
 }

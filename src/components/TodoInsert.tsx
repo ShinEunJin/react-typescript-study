@@ -8,6 +8,7 @@ interface TodoInsertProps {
 }
 
 const TodoInsert = ({ onInsert }: TodoInsertProps) => {
+
   const [value, setValue] = useState("")
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
