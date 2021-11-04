@@ -10,10 +10,25 @@ interface todosType {
   checked: boolean
 }
 
-function App() {
-  const [todos, setTodos] = useState<todosType[]>([])
+const LIMIT = 10000
 
-  const nextId = useRef(0)
+const createBulkTodos = () => {
+  let array = []
+  for (let i = 1; i < LIMIT; i++) {
+    let todo = {
+      id: i,
+      text: `할 일 ${i}`,
+      checked: false
+    }
+    array.push(todo)
+  }
+  return array
+}
+
+function App() {
+  const [todos, setTodos] = useState<todosType[]>(createBulkTodos)
+
+  const nextId = useRef(LIMIT)
 
   const onInsert = useCallback(
     (text: string) => {
@@ -22,24 +37,24 @@ function App() {
         text,
         checked: false,
       }
-      setTodos([...todos, todo])
+      setTodos(todos => [...todos, todo])
       nextId.current += 1
     },
-    [todos]
+    []
   )
 
   const onRemove = useCallback(
     (id: number) => {
-      setTodos(todos.filter((todo) => todo.id !== id))
+      setTodos(todos => todos.filter((todo) => todo.id !== id))
     },
-    [todos]
+    []
   )
 
   const onToggle = useCallback(
     (id: number) => {
-      setTodos(todos.map(todo => todo.id === id ? { ...todo, checked: !todo.checked } : todo))
+      setTodos(todos => todos.map(todo => todo.id === id ? { ...todo, checked: !todo.checked } : todo))
     },
-    [todos]
+    []
   )
 
   return (
