@@ -10,7 +10,7 @@ interface todosType {
   checked: boolean
 }
 
-const LIMIT = 10000
+const LIMIT = 5
 
 const createBulkTodos = () => {
   let array = []
