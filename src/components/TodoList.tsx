@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useCallback } from "react"
+import { FixedSizeList as List } from "react-window"
 
 import TodoListItem from "./TodoListItem"
 import "./TodoList.scss"
@@ -14,12 +15,30 @@ interface TodoListProps {
 }
 
 const TodoList = ({ todos, onRemove, onToggle }: TodoListProps) => {
+
+  const rowRenderer = useCallback(({ index, style }) => {
+    const todo = todos[index]
+    return (
+      <TodoListItem
+        todo={todo}
+        style={style}
+        onRemove={onRemove}
+        onToggle={onToggle}
+      />
+    )
+  }, [todos, onRemove, onToggle])
+
   return (
-    <div className="TodoList">
-      {todos.map((todo) => (
-        <TodoListItem todo={todo} key={todo.id} onRemove={onRemove} onToggle={onToggle} />
-      ))}
-    </div>
+    <List
+      className="TodoList"
+      height={513}
+      width={512}
+      itemCount={todos.length}
+      itemSize={57}
+      style={{ outline: "none" }}
+    >
+      {rowRenderer}
+    </List>
   )
 }
 
