@@ -1,8 +1,8 @@
-import Immer from "./immer/Immer"
+import ColorBox from "./contextAPI/ColorBox"
 
 const App = () => {
   return (
-    <Immer />
+    <ColorBox />
   )
 }
 
