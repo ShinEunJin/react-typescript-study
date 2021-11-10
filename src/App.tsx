@@ -1,8 +1,11 @@
 import ColorBox from "./contextAPI/ColorBox"
+import { ColorProvider } from "./contextAPI/Color"
 
 const App = () => {
   return (
-    <ColorBox />
+    <ColorProvider>
+      <ColorBox />
+    </ColorProvider>
   )
 }
 
