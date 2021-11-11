@@ -1,16 +1,19 @@
 import { ColorConsumer } from "./Color"
 
-interface PropsType {
-  state: { color: string, subColor: string },
-  actions: { setColor: () => void, setSubColor: () => void }
-}
-
 const ColorBox = () => {
+
+  interface valueType {
+    state: {
+      color: string,
+      subColor: string
+    },
+  }
+
   return (
     <ColorConsumer>
-      {(value): PropsType => (
+      {(value: valueType) => (
         <div
-          style={{ width: 64, height: 64, backgroundColor: value.color }}
+          style={{ width: 64, height: 64, backgroundColor: value.state.color }}
         ></div>
       )}
     </ColorConsumer>

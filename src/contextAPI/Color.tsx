@@ -1,18 +1,10 @@
 import { createContext, useState } from "react"
 
-interface childrenProps {
-    children: React.ReactNode
-}
-
 const ColorContext = createContext({
     state: { color: "aqua", subColor: "orange" },
-    actions: {
-        setColor: () => { },
-        setSubColor: () => { }
-    }
 })
 
-const ColorProvider = ({ children }: childrenProps) => {
+const ColorProvider = ({ children }: { children: React.ReactNode }) => {
     const [color, setColor] = useState("aqua")
     const [subColor, setSubColor] = useState("orange")
 
