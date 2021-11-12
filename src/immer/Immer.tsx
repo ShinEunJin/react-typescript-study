@@ -14,6 +14,12 @@ interface FormType {
     [key: string]: string
 }
 
+interface InfoType {
+    id: number,
+    name: string,
+    username: string
+}
+
 const Immer = () => {
     const nextId = useRef(1)
     const [form, setForm] = useState<FormType>({ name: '', username: '' })
@@ -51,7 +57,7 @@ const Immer = () => {
         id => {
             setData(
                 produce(draft => {
-                    draft.array.splice(draft.array.findIndex(info => info.id === id), 1)
+                    draft.array.splice(draft.array.findIndex((info: InfoType) => info.id === id), 1)
                 })
             )
         }, [])

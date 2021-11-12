@@ -4,10 +4,16 @@ const ColorBox = () => {
 
   return (
     <ColorConsumer>
-      {(value) => (
-        <div
-          style={{ width: 64, height: 64, backgroundColor: value.state.color }}
-        ></div>
+      {({ state }) => (
+        <>
+          <div
+            style={{ width: 64, height: 64, backgroundColor: state.color }}
+          ></div>
+          <div
+            style={{ width: 32, height: 32, backgroundColor: state.subColor }}
+          >
+          </div>
+        </>
       )}
     </ColorConsumer>
   )
