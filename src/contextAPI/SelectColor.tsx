@@ -1,29 +1,29 @@
-import { ColorConsumer } from "./Color"
+import { useContext } from "react"
+
+import ColorContext from "./Color"
 
 const colors = ["red", "orange", "yellow", "green", "blue", "indigo", "purple"]
 
 const SelectColor = () => {
 
-    return (
-        <ColorConsumer>
-            {({ actions }) =>
-                <div style={{ display: "flex", marginBottom: 30, borderBottom: "1px solid black" }}>
-                    {colors.map((color, index) => (
-                        <div
-                            key={index}
-                            style={{ width: 25, height: 25, backgroundColor: color }}
-                            onClick={() => actions.setColor(color)}
-                            onContextMenu={(e) => {
-                                e.preventDefault()
-                                actions.setSubColor(color)
-                            }}
-                        >
+    const { actions } = useContext(ColorContext)
 
-                        </div>
-                    ))}
+    return (
+        <div style={{ display: "flex", marginBottom: 30, borderBottom: "1px solid black" }}>
+            {colors.map((color, index) => (
+                <div
+                    key={index}
+                    style={{ width: 25, height: 25, backgroundColor: color }}
+                    onClick={() => actions.setColor(color)}
+                    onContextMenu={(e) => {
+                        e.preventDefault()
+                        actions.setSubColor(color)
+                    }}
+                >
                 </div>
-            }
-        </ColorConsumer>
+            ))}
+        </div>
+
     )
 }
 
