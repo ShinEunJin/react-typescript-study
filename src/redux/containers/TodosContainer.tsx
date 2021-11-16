@@ -3,13 +3,27 @@ import { connect } from "react-redux"
 import Todos from "../components/Todos"
 import { changeInput, insert, toggle, remove } from '../modules/todos'
 
+// interface MapStatePropsType {
+//     input: string,
+//     todos: {
+//         id: number,
+//         text: string,
+//         done: boolean
+//     }[],
+//     changeInput: (input: string) => {type: string, input: string}
+//     insert: 
+// }
 interface TodosPropsType {
     input: string,
-    todos: [],
-    changeInput: React.ChangeEvent<HTMLInputElement>,
-    insert: () => void,
-    toggle: () => void,
-    remove: () => void
+    todos: {
+        id: number,
+        text: string,
+        done: boolean
+    }[],
+    changeInput: (input: string) => { type: string, input: string },
+    insert: (text: string) => { type: string, todo: { id: number, text: string, done: boolean } },
+    toggle: (id: number) => { type: string, id: number },
+    remove: (id: number) => { type: string, id: number }
 }
 
 const TodosContainer = ({ input, todos, changeInput, insert, toggle, remove }: TodosPropsType) => {

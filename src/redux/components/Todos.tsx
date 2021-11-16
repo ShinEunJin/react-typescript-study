@@ -1,10 +1,14 @@
 interface TodosPropsType {
     input: string,
-    todos: [],
-    onChangeInput: (input: string) => string,
-    onInsert: (input: string) => void,
-    onToggle: () => void,
-    onRemove: () => void
+    todos: {
+        id: number,
+        text: string,
+        done: boolean
+    }[],
+    onChangeInput: (input: string) => { type: string, input: string },
+    onInsert: (text: string) => { type: string, todo: { id: number, text: string, done: boolean } },
+    onToggle: (id: number) => { type: string, id: number },
+    onRemove: (id: number) => { type: string, id: number }
 }
 
 const TodoItem = ({ todo, onToggle, onRemove }: { todo: { id: number, text: string, done: boolean }, onToggle: (id: number) => void, onRemove: (id: number) => void }) => {
@@ -39,7 +43,7 @@ const Todos = ({ input, todos, onChangeInput, onInsert, onToggle, onRemove }: To
                 <button type="submit">등록</button>
             </form>
             <div>
-                {todos.map((todo: { id: number, text: string, done: boolean }) => (
+                {todos.map((todo) => (
                     <TodoItem
                         todo={todo}
                         key={todo.id}
