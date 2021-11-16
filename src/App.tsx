@@ -1,13 +1,10 @@
-import ColorBox from "./contextAPI/ColorBox"
-import { ColorProvider } from "./contextAPI/Color"
-import SelectColor from "./contextAPI/SelectColor"
+import TodosContainer from "./redux/containers/TodosContainer"
 
 const App = () => {
   return (
-    <ColorProvider>
-      <SelectColor />
-      <ColorBox />
-    </ColorProvider>
+    <>
+      <TodosContainer />
+    </>
   )
 }
 
