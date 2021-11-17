@@ -28,20 +28,9 @@ export const remove = (id: number) => ({
     id
 })
 
-const initialState = {
+const initialState: { input: string, todos: { id: number, done: boolean }[] } = {
     input: "",
-    todos: [
-        {
-            id: 1,
-            text: "테스트 1",
-            done: true
-        },
-        {
-            id: 2,
-            text: "테스트 2",
-            done: false
-        }
-    ]
+    todos: []
 }
 
 const todos = (state = initialState, action: { type: string, input: string, todo: {}, id: number }) => {

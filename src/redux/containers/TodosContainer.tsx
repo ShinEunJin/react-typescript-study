@@ -2,17 +2,6 @@ import { connect } from "react-redux"
 
 import Todos from "../components/Todos"
 import { changeInput, insert, toggle, remove } from '../modules/todos'
-
-// interface MapStatePropsType {
-//     input: string,
-//     todos: {
-//         id: number,
-//         text: string,
-//         done: boolean
-//     }[],
-//     changeInput: (input: string) => {type: string, input: string}
-//     insert: 
-// }
 interface TodosPropsType {
     input: string,
     todos: {
