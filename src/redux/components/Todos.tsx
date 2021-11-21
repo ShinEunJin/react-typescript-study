@@ -1,4 +1,19 @@
-const TodoItem = ({ todo, onToggle, onRemove }) => {
+interface TodoItemProps {
+  todo: { id: number, text: string, done: boolean },
+  onToggle: (id: number) => void
+  onRemove: (id: number) => void
+}
+
+interface TodosProps {
+  input: string,
+  todos: { id: number, text: string, done: boolean }[],
+  onChangeInput: (text: string) => void,
+  onInsert: (text: string) => void,
+  onToggle: (id: number) => void,
+  onRemove: (id: number) => void
+}
+
+const TodoItem = ({ todo, onToggle, onRemove }: TodoItemProps) => {
   return (
     <div>
       <input
@@ -22,14 +37,14 @@ const Todos = ({
   onInsert,
   onToggle,
   onRemove,
-}) => {
-  const onSubmit = (e) => {
+}: TodosProps) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     onInsert(input)
     onChangeInput("")
   }
 
-  const onChange = (e) => onChangeInput(e.target.value)
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => onChangeInput(e.target.value)
 
   return (
     <div>
