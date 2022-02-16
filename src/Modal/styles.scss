@@ -1,0 +1,17 @@
+.popup-box {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+    background-color: wheat;
+    position: absolute;
+    top: 30%;
+    right: 50%;
+    margin-right: -150px;
+
+    > span {
+        cursor: pointer;
+    }
+}
