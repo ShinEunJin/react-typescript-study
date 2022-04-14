@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import "./AccordionDoubleItem.scss"
 interface Props {
@@ -6,14 +6,35 @@ interface Props {
         id: number,
         question: string,
         answer: string
-    }
+    },
+    toggle: boolean
 }
 
-const AccordionDoubleItem: React.FC<Props> = ({ data }) => {
+const AccordionDoubleItem: React.FC<Props> = ({ data, toggle }) => {
+
+    const [toggleBody, setToggleBody] = useState(false)
+
     return (
         <div className='AccordionDoubleItem'>
-            <div className='AccordionDoubleItem-head'>{data.question}</div>
-            <div className='AccordionDoubleItem-body'>{data.answer}</div>
+            <div
+                className='AccordionDoubleItem-head'
+                style={{
+                    height: toggle ? 60 : 0,
+                    color: toggle ? "#fff" : "#2e2e2e"
+                }}
+                onClick={() => setToggleBody(prev => !prev)}
+            >
+                {data.question}
+            </div>
+            <div
+                className='AccordionDoubleItem-body'
+                style={{
+                    padding: toggleBody ? "40px 0" : "0",
+                    color: toggleBody ? "wheat" : "gray"
+                }}
+            >
+                {data.answer}
+            </div>
         </div>
     )
 }

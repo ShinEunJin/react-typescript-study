@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AccordionDoubleItem from './AccordionDoubleItem'
 
 import "./AccordionItem.scss"
@@ -16,14 +16,17 @@ interface Props {
 }
 
 const AccordionItem: React.FC<Props> = ({ data }) => {
+
+    const [toggle, setToggle] = useState(false)
+
     return (
         <div className="AccordionItem">
-            <div className='AccordionItem-head'>
+            <div className='AccordionItem-head' onClick={() => { setToggle(prev => !prev) }}>
                 {data.name}
             </div>
             <div className='AccordionItem-body'>
                 {data.contents && data.contents.length > 0 && data.contents.map((item, idx) => (
-                    <AccordionDoubleItem key={idx} data={item} />
+                    <AccordionDoubleItem key={idx} data={item} toggle={toggle} />
                 ))}
             </div>
         </div>

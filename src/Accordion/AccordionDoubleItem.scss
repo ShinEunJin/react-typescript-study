@@ -3,22 +3,22 @@
   align-items: center;
   padding-left: 30px;
   overflow: hidden;
+  transition: all 0.5s;
 }
 
 .AccordionDoubleItem {
   .AccordionDoubleItem-head {
     background-color: #2e2e2e;
     color: #fff;
+    cursor: pointer;
     @include basic;
-
-    height: 60px;
   }
 
   .AccordionDoubleItem-body {
     background-color: gray;
     color: wheat;
     @include basic;
-
-    height: 60px;
+    height: 0;
+    padding-left: 30px !important;
   }
 }
