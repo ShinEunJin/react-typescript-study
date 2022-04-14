@@ -1,0 +1,12 @@
+.AccordionItem {
+  width: 500px;
+
+  .AccordionItem-head {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    font-weight: bold;
+    padding-left: 30px;
+  }
+}

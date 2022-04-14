@@ -1,11 +1,11 @@
-import TodosContainer from "./redux/containers/TodosContainer"
-import Modal from './Modal'
+import AccordionList from "./Accordion/AccordionList"
+
+import { data } from "./Accordion/data"
 
 const App = () => {
   return (
     <>
-      <Modal />
-      <TodosContainer />
+      <AccordionList data={data} />
     </>
   )
 }
