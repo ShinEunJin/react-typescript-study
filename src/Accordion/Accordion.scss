@@ -1,0 +1,12 @@
+.Accordion {
+  width: 500px;
+  .Accordion-title {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: all 0.5s;
+    overflow: hidden;
+  }
+}

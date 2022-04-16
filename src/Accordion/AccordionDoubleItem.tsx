@@ -29,7 +29,7 @@ const AccordionDoubleItem: React.FC<Props> = ({ data, toggle }) => {
             <div
                 className='AccordionDoubleItem-body'
                 style={{
-                    padding: toggleBody ? "40px 0" : "0",
+                    padding: toggle ? toggleBody ? "40px 0" : "0" : "0",
                     color: toggleBody ? "wheat" : "gray"
                 }}
             >

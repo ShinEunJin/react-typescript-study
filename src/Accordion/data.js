@@ -1,7 +1,13 @@
 export const data = [
     {
         id: 0, name: "테스트1", contents: [
-            { id: 0, question: "타입스크립트1-1", answer: "파이썬1-1" },
+            {
+                id: 0, question: "타입스크립트1-1", answer: "파이썬1-1", contents: [
+                    { id: 0, title: "타입스크립트1-1-1", description: "내 주력 언어" },
+                    { id: 1, title: "타입스크립트1-1-2", description: "공부해야할 언어 탑 1" },
+                    { id: 2, title: "타입스크립트1-1-3", description: "개발 효율성을 정말 많이 높여준다." }
+                ]
+            },
             { id: 1, question: "타입스크립트1-2", answer: "파이썬1-2" },
             { id: 2, question: "타입스크립트1-3", answer: "파이썬1-3" },
         ]
