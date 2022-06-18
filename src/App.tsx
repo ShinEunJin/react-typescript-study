@@ -1,13 +1,14 @@
-import AccordionList from "./Accordion/AccordionList"
-
-import { data } from "./Accordion/data"
+import ColorBox from "./contextAPI/ColorBox";
+import CounterProvider from "./contextAPI/CounterProvider";
+import SelectColor from "./contextAPI/SelectColor";
 
 const App = () => {
   return (
-    <>
-      <AccordionList data={data} />
-    </>
-  )
-}
+    <CounterProvider>
+      <SelectColor />
+      <ColorBox />
+    </CounterProvider>
+  );
+};
 
-export default App
+export default App;
