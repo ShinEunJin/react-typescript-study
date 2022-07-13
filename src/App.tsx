@@ -1,14 +1,7 @@
-import ColorBox from "./contextAPI/ColorBox";
-import CounterProvider from "./contextAPI/CounterProvider";
-import SelectColor from "./contextAPI/SelectColor";
+import Styled from "./styled";
 
 const App = () => {
-  return (
-    <CounterProvider>
-      <SelectColor />
-      <ColorBox />
-    </CounterProvider>
-  );
+  return <Styled />;
 };
 
 export default App;
