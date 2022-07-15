@@ -1,17 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from "react-redux"
-import { CookiesProvider } from 'react-cookie';
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { CookiesProvider } from "react-cookie";
 
-import './index.scss';
-import App from './App';
-import store from './redux/modules';
+import App from "./App";
+import store from "./redux/modules";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./theme";
 
 ReactDOM.render(
   <CookiesProvider>
     <Provider store={store}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </Provider>
   </CookiesProvider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
