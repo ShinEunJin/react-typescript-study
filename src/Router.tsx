@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Coins from "./CoinTracker/Coins";
-import Coin from "./CoinTracker/Coin";
+import Composition from "./Composition/Composition";
+import CompositionForm from "./Composition/CompositionForm";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Coins />} />
-        <Route path=":coinId" element={<Coin />} />
+        <Route path="/survey" element={<Composition />} />
+        <Route path="/survey/:id" element={<CompositionForm />} />
       </Routes>
     </BrowserRouter>
   );

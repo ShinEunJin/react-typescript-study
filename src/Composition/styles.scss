@@ -1,0 +1,30 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.survey-container {
+    background-color: rgb(243, 236, 236);
+    width: 30vw;
+    margin: 0 auto;;
+}
+
+.survey-index {
+    display: block;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.title {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.survey-steps-container{
+    width: 100%;
+    padding: 10px 5px;
+    background-color: aliceblue;
+}

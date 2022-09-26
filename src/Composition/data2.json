@@ -1,0 +1,78 @@
+[
+  {
+    "id": "0",
+    "title": "웹툰 설문지",
+    "steps": [
+      [
+        {
+          "title": "이름을 적어라",
+          "type": "text"
+        },
+        {
+          "title": "좋아하는 웹툰은?",
+          "type": "singleChoice",
+          "name": "prefer",
+          "options": ["격기3반", "에이머", "호랑이형님", "그외"]
+        },
+        {
+          "title": "그외 무슨 웹툰을 좋아하나?",
+          "type": "text",
+          "dependOn": {
+            "dependOnName": "prefer",
+            "dependOnValue": "그외"
+          }
+        }
+      ],
+      [
+        {
+          "title": "직업을 적어라.",
+          "type": "text"
+        },
+        {
+          "title": "웹툰을 좋아하나?",
+          "type": "singleChoice",
+          "name": "like",
+          "options": ["좋아한다", "아니다"]
+        },
+        {
+          "title": "좋아하는 이유는?",
+          "type": "text",
+          "dependOn": {
+            "dependOnName": "like",
+            "dependOnValue": "좋아한다"
+          }
+        },
+        {
+          "title": "좋아하지 않는 이유는?",
+          "type": "text",
+          "dependOn": {
+            "dependOnName": "like",
+            "dependOnValue": "아니다"
+          }
+        }
+      ]
+    ]
+  },
+  {
+    "id": "1",
+    "title": "개발자 설문지",
+    "steps": [
+      [
+        {
+          "title": "사용하는 프레임워크는?",
+          "type": "singleChoice",
+          "name": "using",
+          "options": ["Angular", "React", "Vue", "그외"]
+        },
+        {
+          "title": "그외 어떤 프레임워크를 쓰는가?",
+          "type": "text",
+          "dependOn": {
+            "dependOnName": "using",
+            "dependOnValue": "그외"
+          }
+        }
+      ]
+    ]
+  }
+]

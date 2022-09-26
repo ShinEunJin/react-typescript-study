@@ -34,7 +34,6 @@ const Tag = styled.span`
 const Box = styled.div<BoxProps>`
   width: 200px;
   height: 200px;
-  background-color: ${(props) => props.bgColor};
   animation: ${rotateAnim} 2s linear infinite;
   display: flex;
   justify-content: center;
