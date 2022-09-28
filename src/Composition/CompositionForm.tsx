@@ -2,7 +2,8 @@ import "./styles.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Data from "./data2.json";
-import CompositionSteps from "./CompositionStep";
+import CompositionStep from "./CompositionStep";
+import Template from "./Template";
 
 interface DataTypes {
   id: string;
@@ -32,25 +33,41 @@ const CompositionForm = () => {
     if (id) setData(Data[Number(id)]);
   }, [id]);
 
+  const handleClickBtn = (e: "back" | "next") => {
+    if (e === "back" && page !== 0) return setPage((prev) => prev - 1);
+    if (e === "next" && data && page !== data.steps.length - 1)
+      return setPage((prev) => prev + 1);
+  };
+
   return (
-    <div className="container">
+    <Template>
       {data && (
-        <div>
-          <h1 className="title">{data.title}</h1>
-          <div>
+        <div className="form-container">
+          <h1 className="form-container__title">{data.title}</h1>
+          <main className="form-container__content">
             {data.steps[page].map((v, i) => (
-              <CompositionSteps
+              <CompositionStep
                 key={i}
                 {...v}
                 surveyResult={surveyResult}
                 setSurveyResult={setSurveyResult}
               />
             ))}
-          </div>
+          </main>
         </div>
       )}
-      <button onClick={() => setPage((prev) => prev + 1)}>다음</button>
-    </div>
+      <div className="btn-container">
+        <button
+          style={{ visibility: page === 0 ? "hidden" : "visible" }}
+          onClick={() => handleClickBtn("back")}
+        >
+          이전
+        </button>
+        <button onClick={() => handleClickBtn("next")}>
+          {data && page === data.steps.length - 1 ? "제출" : "다음"}
+        </button>
+      </div>
+    </Template>
   );
 };
 

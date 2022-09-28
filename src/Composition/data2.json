@@ -32,7 +32,7 @@
           "title": "웹툰을 좋아하나?",
           "type": "singleChoice",
           "name": "like",
-          "options": ["좋아한다", "아니다"]
+          "options": ["좋아한다", "아니다", "무응답"]
         },
         {
           "title": "좋아하는 이유는?",

@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 interface CompositionStepProps {
   title: string;
   type: string;
@@ -12,6 +14,18 @@ interface CompositionStepProps {
 }
 
 const CompositionStep = (props: CompositionStepProps) => {
+  const [isDependOn, setIsDependOn] = useState(false);
+
+  useEffect(() => {
+    const checkDepend =
+      props.dependOn &&
+      Object.values(props.surveyResult).includes(
+        props.dependOn.dependOnValue + `[${props.dependOn.dependOnName}]`
+      );
+    if (checkDepend) setIsDependOn(true);
+    else setIsDependOn(false);
+  }, [props]);
+
   const handleInputChange = (e: any, title: any, name?: any) => {
     if (name)
       props.setSurveyResult({
@@ -20,28 +34,28 @@ const CompositionStep = (props: CompositionStepProps) => {
       });
     else
       props.setSurveyResult({ ...props.surveyResult, [title]: e.target.value });
-    console.log(props.surveyResult);
   };
+
   return (
-    <div className="survey-steps-container">
+    <>
       {props.dependOn ? (
-        Object.values(props.surveyResult).includes(
-          props.dependOn.dependOnValue + `[${props.dependOn.dependOnName}]`
-        ) && (
-          <>
-            <div>{props.title}</div>
+        isDependOn && (
+          <div className="step-container">
+            <div className="step-container__title">{props.title}</div>
             <input
+              className="step-container__input"
               type={props.type}
               onChange={(e) => handleInputChange(e, props.title)}
               value={props.surveyResult[props.title] || ""}
             />
-          </>
+          </div>
         )
       ) : (
-        <>
-          <div>{props.title}</div>
+        <div className="step-container">
+          <div className="step-container__title">{props.title}</div>
           {props.type !== "singleChoice" && (
             <input
+              className="step-container__input"
               type={props.type}
               onChange={(e) => handleInputChange(e, props.title)}
               value={props.surveyResult[props.title] || ""}
@@ -49,8 +63,9 @@ const CompositionStep = (props: CompositionStepProps) => {
           )}
           {props.options &&
             props.options.map((v, i) => (
-              <div key={i}>
+              <div key={i} className="step-container__radios">
                 <input
+                  className="step-container__radios__item"
                   type="radio"
                   name={props.name}
                   value={v}
@@ -58,12 +73,12 @@ const CompositionStep = (props: CompositionStepProps) => {
                     handleInputChange(e, props.title, props.name)
                   }
                 />
-                <label>{v}</label>
+                <label className="step-container__radios__label">{v}</label>
               </div>
             ))}
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
