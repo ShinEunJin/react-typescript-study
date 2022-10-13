@@ -16,15 +16,21 @@ interface StepProps {
 
 const Step = (props: StepProps) => {
   const [value, setValue] = useState<any>({});
-
-  console.log(value);
+  const [dependList, setDependList] = useState<any>({});
 
   return (
     <>
       {props.list &&
         props.list.length > 0 &&
         props.list.map((v) => (
-          <Form key={v.title} {...v} value={value} setValue={setValue} />
+          <Form
+            key={v.title}
+            {...v}
+            value={value}
+            setValue={setValue}
+            dependList={dependList}
+            setDependList={setDependList}
+          />
         ))}
     </>
   );
