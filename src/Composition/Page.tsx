@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Template from "./Template";
 import FetchData from "./data2.json";
 import Step from "./Step";
+import Button from "./Button";
 
 export interface FetchDataTypes {
   id: string;
@@ -32,6 +33,11 @@ const Page = () => {
         <h1 className="form-container__title">{FetchData[Number(id)].title}</h1>
         <section className="form-container__content">
           <Step list={FetchData[Number(id)].steps[stepIdx]} />
+          <Button
+            numberOfPage={FetchData[Number(id)].steps.length}
+            stepIdx={stepIdx}
+            setStepIdx={setStepIdx}
+          />
         </section>
       </div>
     </Template>

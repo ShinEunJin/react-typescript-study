@@ -17,6 +17,8 @@ interface StepProps {
 const Step = (props: StepProps) => {
   const [value, setValue] = useState<any>({});
 
+  console.log(value);
+
   return (
     <>
       {props.list &&
