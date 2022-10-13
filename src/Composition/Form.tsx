@@ -64,6 +64,7 @@ const Form = (props: FormProps) => {
                   <input
                     type="radio"
                     name={props.name}
+                    checked={props.value[props.title] === v}
                     value={v}
                     onChange={(e) =>
                       handleChangeInputValue(e, props.title, props.name)
