@@ -7,12 +7,12 @@ interface FormProps {
   options?: string[];
   dependOn?: {
     dependOnName: string;
-    dependOnValue: string;
+    dependOnValue: string | string[];
   };
   value: any;
   dependList: any;
-  setValue: Dispatch<SetStateAction<string>>;
-  setDependList: Dispatch<SetStateAction<string>>;
+  setValue: any;
+  setDependList: any;
 }
 
 const Form = (props: FormProps) => {
@@ -28,13 +28,21 @@ const Form = (props: FormProps) => {
 
   const checkingDependList = (
     list: { [key: string]: string },
-    dependOn: { dependOnName: string; dependOnValue: string }
+    dependOn: { dependOnName: string; dependOnValue: string | string[] }
   ) => {
-    if (
-      dependOn.dependOnName in list &&
-      list[dependOn.dependOnName] === dependOn?.dependOnValue
-    )
-      return true;
+    if (typeof dependOn.dependOnValue === "string") {
+      if (
+        dependOn.dependOnName in list &&
+        list[dependOn.dependOnName] === dependOn?.dependOnValue
+      )
+        return true;
+    } else {
+      if (
+        dependOn.dependOnName in list &&
+        dependOn.dependOnValue.includes(list[dependOn.dependOnName])
+      )
+        return true;
+    }
   };
 
   return (
@@ -54,7 +62,7 @@ const Form = (props: FormProps) => {
         </div>
       )}
 
-      {props.type === "singleChoice" && (
+      {!props.dependOn && props.type === "singleChoice" && (
         <div className="step-container">
           <div className="step-container__title">
             {props.title}
@@ -77,19 +85,46 @@ const Form = (props: FormProps) => {
         </div>
       )}
 
-      {props.dependOn && checkingDependList(props.dependList, props.dependOn) && (
-        <div className="step-container">
-          <div className="step-container__title">
-            {props.title}
-            <input
-              className="step-container__input"
-              type={props.type}
-              value={props.value[props.title] || ""}
-              onChange={(e) => handleChangeInputValue(e, props.title)}
-            />
+      {props.dependOn &&
+        props.type === "text" &&
+        checkingDependList(props.dependList, props.dependOn) && (
+          <div className="step-container">
+            <div className="step-container__title">
+              {props.title}
+              <input
+                className="step-container__input"
+                type={props.type}
+                value={props.value[props.title] || ""}
+                onChange={(e) => handleChangeInputValue(e, props.title)}
+              />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+
+      {props.dependOn &&
+        props.type === "singleChoice" &&
+        checkingDependList(props.dependList, props.dependOn) && (
+          <div className="step-container">
+            <div className="step-container__title">
+              {props.title}
+              {props.options &&
+                props.options.map((v, i) => (
+                  <div key={i}>
+                    <input
+                      type="radio"
+                      name={props.name}
+                      checked={props.value[props.title] === v}
+                      value={v}
+                      onChange={(e) =>
+                        handleChangeInputValue(e, props.title, props.name)
+                      }
+                    />
+                    <label>{v}</label>
+                  </div>
+                ))}
+            </div>
+          </div>
+        )}
     </>
   );
 };

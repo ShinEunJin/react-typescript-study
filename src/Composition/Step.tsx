@@ -9,7 +9,7 @@ interface StepProps {
     options?: string[];
     dependOn?: {
       dependOnName: string;
-      dependOnValue: string;
+      dependOnValue: string | string[];
     };
   }[];
 }
