@@ -14,9 +14,17 @@ interface StepProps {
   }[];
 }
 
+export interface ValueType {
+  [key: string]: string;
+}
+
+export interface DependListType {
+  [key: string]: string;
+}
+
 const Step = (props: StepProps) => {
-  const [value, setValue] = useState<any>({});
-  const [dependList, setDependList] = useState<any>({});
+  const [value, setValue] = useState<ValueType>({});
+  const [dependList, setDependList] = useState<DependListType>({});
 
   return (
     <>

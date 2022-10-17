@@ -1,4 +1,5 @@
 import { ChangeEvent, Dispatch, SetStateAction, useCallback } from "react";
+import { DependListType, ValueType } from "./Step";
 
 interface FormProps {
   title: string;
@@ -9,10 +10,10 @@ interface FormProps {
     dependOnName: string;
     dependOnValue: string | string[];
   };
-  value: any;
-  dependList: any;
-  setValue: any;
-  setDependList: any;
+  value: ValueType;
+  dependList: DependListType;
+  setValue: Dispatch<SetStateAction<ValueType>>;
+  setDependList: Dispatch<SetStateAction<DependListType>>;
 }
 
 const Form = (props: FormProps) => {
